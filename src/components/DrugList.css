@@ -73,12 +73,16 @@
 
 .footer {
     background-color: #16b8ee;
+    /* Light blue background */
     color: white;
     text-align: center;
     padding: 1rem;
     font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    /* Modern font */
+    font-weight: 500;
+    /* Medium weight for better readability */
     position: sticky;
-    /* Keeps the footer at the bottom of the page */
     bottom: 0;
     width: 100%;
 }
