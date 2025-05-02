@@ -1,0 +1,122 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensures the layout takes up the full viewport height */
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: #16b8ee;
+    /* Light blue color */
+    color: white;
+    text-align: left;
+    /* Aligns the text to the left */
+    padding: 1rem 2rem;
+    /* Adds padding for better spacing */
+    font-size: 2rem;
+    /* Increases the font size */
+    font-weight: bold;
+    /* Makes the text bold */
+    font-family: 'Poppins', cursive;
+    /* Uses a cursive font */
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    /* Ensures the main content area grows to fill available space */
+}
+
+.left-panel {
+    background-color: #f4f4f4;
+    width: 16%;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    /* Enables scrolling for the content area */
+}
+
+.drug-list-container {
+    max-height: 70vh;
+    /* Limits the height of the drug list container */
+    overflow-y: auto;
+    /* Enables scrolling for the drug list */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.drug-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+
+.drug-item h3 {
+    margin: 0 0 0.5rem;
+    color: #333;
+}
+
+.drug-item p {
+    margin: 0.2rem 0;
+    color: #555;
+}
+
+.footer {
+    background-color: #16b8ee;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    position: sticky;
+    /* Keeps the footer at the bottom of the page */
+    bottom: 0;
+    width: 100%;
+}
+
+.loading,
+.error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 2rem;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.tab-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.tab-link:hover {
+    background-color: #add8e6;
+    /* Light blue on hover */
+    color: white;
+}
