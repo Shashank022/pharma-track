@@ -22,6 +22,7 @@ const DrugList: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
+    const [selectedRoute, setSelectedRoute] = useState<string>(''); // State for selected route
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,8 +52,23 @@ const DrugList: React.FC = () => {
         setFilteredDrugs(filtered);
     };
 
+    const handleRouteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const route = event.target.value;
+        setSelectedRoute(route);
+
+        const filtered = drugs.filter((drug) =>
+            drug.openfda?.route?.includes(route)
+        );
+        setFilteredDrugs(route ? filtered : drugs); // Reset to all drugs if no route is selected
+    };
+
     if (loading) return <div className="loading">Loading...</div>;
     if (error) return <div className="error">{error}</div>;
+
+    // Extract unique routes for the dropdown
+    const uniqueRoutes = Array.from(
+        new Set(drugs.flatMap((drug) => drug.openfda?.route || []))
+    );
 
     return (
         <div className="layout">
@@ -68,6 +84,18 @@ const DrugList: React.FC = () => {
                         value={searchTerm}
                         onChange={handleSearch}
                     />
+                    <select
+                        className="route-filter"
+                        value={selectedRoute}
+                        onChange={handleRouteChange}
+                    >
+                        <option value="">All Routes</option>
+                        {uniqueRoutes.map((route, index) => (
+                            <option key={index} value={route}>
+                                {route}
+                            </option>
+                        ))}
+                    </select>
                     <ul>
                         {filteredDrugs.map((drug, index) => (
                             <li key={index} className="drug-item">
@@ -86,7 +114,7 @@ const DrugList: React.FC = () => {
                     </ul>
                 </section>
             </div>
-            <footer className="footer">© 2025 Pharma Track. All Rights Reserved.</footer>
+            <footer className="footer">© 2025 Pharma Track. All Rights Registered @2025</footer>
         </div>
     );
 };

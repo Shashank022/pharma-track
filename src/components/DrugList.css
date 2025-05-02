@@ -40,6 +40,9 @@
     padding: 1rem;
     overflow-y: auto;
     /* Enables scrolling for the content area */
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
 }
 
 .drug-list-container {
@@ -123,4 +126,17 @@
     background-color: #add8e6;
     /* Light blue on hover */
     color: white;
+}
+
+.route-filter {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 15%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
 }
