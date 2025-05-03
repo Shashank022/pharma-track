@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchDrugData } from '../services/api'; // Adjust the import path as necessary
 import './DrugList.css'; // Import the CSS file
+import Products from './Products'; // Import the Products component
 
 interface Drug {
     application_number: string;
@@ -21,7 +22,7 @@ const DrugList: React.FC = () => {
     const [filteredDrugs, setFilteredDrugs] = useState<Drug[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [searchTerm, setSearchTerm] = useState<string>(''); // Combined search term
     const [selectedRoute, setSelectedRoute] = useState<string>(''); // State for selected route
 
     useEffect(() => {
@@ -47,9 +48,12 @@ const DrugList: React.FC = () => {
         const filtered = drugs.filter(
             (drug) =>
                 drug.application_number.toLowerCase().includes(term) ||
-                drug.sponsor_name.toLowerCase().includes(term)
+                drug.sponsor_name.toLowerCase().includes(term) ||
+                drug.openfda?.substance_name?.some((substance) =>
+                    substance.toLowerCase().includes(term)
+                )
         );
-        setFilteredDrugs(filtered);
+        setFilteredDrugs(term ? filtered : drugs); // Reset to all drugs if no term is entered
     };
 
     const handleRouteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -80,7 +84,7 @@ const DrugList: React.FC = () => {
                     <input
                         type="text"
                         className="search-bar"
-                        placeholder="Search by Application Number or Sponsor Name"
+                        placeholder="Search by Application Number, Sponsor Name, or Substance Name"
                         value={searchTerm}
                         onChange={handleSearch}
                     />
@@ -99,7 +103,7 @@ const DrugList: React.FC = () => {
                     <ul>
                         {filteredDrugs.map((drug, index) => (
                             <li key={index} className="drug-item">
-                                <h3>Application Number: {drug.application_number}</h3>
+                                <h3>Application No: {drug.application_number}</h3>
                                 <p>Sponsor Name: {drug.sponsor_name}</p>
                                 {drug.openfda && (
                                     <>
@@ -107,6 +111,11 @@ const DrugList: React.FC = () => {
                                         <p>Generic Names: {drug.openfda.generic_name?.join(', ') || 'N/A'}</p>
                                         <p>Manufacturer: {drug.openfda.manufacturer_name?.join(', ') || 'N/A'}</p>
                                         <p>Route: {drug.openfda.route?.join(', ') || 'N/A'}</p>
+                                        <Products
+                                            productNdc={drug.openfda.product_ndc}
+                                            substanceName={drug.openfda.substance_name}
+                                            pharmClassEpc={drug.openfda.pharm_class_epc}
+                                        />
                                     </>
                                 )}
                             </li>

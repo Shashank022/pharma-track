@@ -140,3 +140,21 @@
     box-sizing: border-box;
     background-color: #f9f9f9;
 }
+
+.products-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.products-container h4 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.products-container p {
+    margin: 0.2rem 0;
+    color: #555;
+}
