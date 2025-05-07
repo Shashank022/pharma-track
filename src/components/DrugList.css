@@ -30,7 +30,7 @@
 
 .left-panel {
     background-color: #f4f4f4;
-    width: 16%;
+    width: 13%;
     padding: 1rem;
     border-right: 1px solid #ddd;
 }
@@ -157,4 +157,44 @@
 .products-container p {
     margin: 0.2rem 0;
     color: #555;
+}
+
+.tab-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.tab-link:hover {
+    background-color: #add8e6;
+    /* Light blue on hover */
+    color: white;
+}
+
+.search-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    width: auto;
+    /* Ensures the button width is based on its content */
+    max-width: 200px;
+    /* Optional: Set a maximum width */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.search-button:hover {
+    background-color: #45a049;
 }

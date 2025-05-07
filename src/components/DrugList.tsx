@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchDrugData } from '../services/api'; // Adjust the import path as necessary
 import './DrugList.css'; // Import the CSS file
 import Products from './Products'; // Import the Products component
+import { Link } from 'react-router-dom';
 
 interface Drug {
     application_number: string;
@@ -78,7 +79,10 @@ const DrugList: React.FC = () => {
         <div className="layout">
             <header className="header">Pharma Tracker</header>
             <div className="main">
-                <aside className="left-panel">Left Panel Content</aside>
+                <aside className="left-panel">
+                    <Link to="/drug-list" className="tab-link">Drug Search</Link>
+                    <Link to="/api-search" className="tab-link">API Search</Link>
+                </aside>
                 <section className="content">
                     <h1>Drug List</h1>
                     <input
